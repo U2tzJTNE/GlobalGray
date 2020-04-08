@@ -1,0 +1,3 @@
+rootProject.name='GlobalGray'
+include ':sample'
+include ':globalgray'
