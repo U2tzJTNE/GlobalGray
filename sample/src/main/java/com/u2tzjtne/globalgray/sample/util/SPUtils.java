@@ -1,7 +1,9 @@
-package com.u2tzjtne.globalgray.sample;
+package com.u2tzjtne.globalgray.sample.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.u2tzjtne.globalgray.sample.App;
 
 /**
  *

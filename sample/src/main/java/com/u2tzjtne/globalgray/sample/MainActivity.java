@@ -5,19 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 
-import java.util.List;
+import com.u2tzjtne.globalgray.sample.util.AppUtils;
+import com.u2tzjtne.globalgray.sample.util.SPUtils;
 
 /**
  * @author u2tzjtne
+ * Date 2020/4/16
+ * Email u2tzjtne@gmail.com
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        restartApp();
+                        AppUtils.restartApp(MainActivity.this);
                     }
-                },300);
+                }, 300);
             }
         });
     }
@@ -71,26 +71,5 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setCancelable(true)
                 .show();
-    }
-
-    private void restartApp() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.setClassName(getPackageName(), getLauncherActivity(getPackageName()));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(0);
-    }
-
-    private String getLauncherActivity(String pkg) {
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.setPackage(pkg);
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
-        return info.get(0).activityInfo.name;
     }
 }
