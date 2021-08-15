@@ -1,15 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "0.0.1"
+        versionName "1.0"
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -22,34 +24,15 @@ android {
 
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
-
-buildscript {
-    repositories {
-        jcenter()
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.u2tzjtne'
+                artifactId = 'globalgray'
+                version = '1.0'
+            }
+        }
     }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.9.2'
-    }
-}
-tasks.withType(Javadoc) {
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('Xdoclint:none', '-quiet')
-}
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-publish {
-    userOrg = 'u2tzjtne'
-    repoName = 'android'
-    groupId = 'com.u2tzjtne'
-    artifactId = 'globalgray'
-    uploadName = 'GlobalGray'
-    bintrayUser = properties.getProperty("bintray.user")
-    bintrayKey = properties.getProperty("bintray.apikey")
-    publishVersion = '0.0.1'
-    desc = 'A library that can make app global gray.'
-    website = 'https://github.com/U2tzJTNE/GlobalGray'
-    dryRun = false
 }
