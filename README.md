@@ -6,7 +6,7 @@
 
 ## Demo
 
-![demo](//p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a1ceeb59d774935b3ef6fdc001f9856~tplv-k3u1fbpfcp-zoom-1.image)
+![demo](http://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a1ceeb59d774935b3ef6fdc001f9856~tplv-k3u1fbpfcp-zoom-1.image)
 
 ## 依赖
 
